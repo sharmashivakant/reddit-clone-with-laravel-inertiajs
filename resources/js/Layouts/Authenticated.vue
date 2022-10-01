@@ -30,6 +30,10 @@ const showingNavigationDropdown = ref(false);
                                 <BreezeNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
                                 </BreezeNavLink>
+
+                                <BreezeNavLink :href="route('communities.index')" :active="route().current('communities.index')">
+                                    communities
+                                </BreezeNavLink>
                             </div>
                         </div>
 

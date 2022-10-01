@@ -17,8 +17,11 @@ class CommunityController extends Controller
      */
     public function index()
     {
-        //
+        $communities = Community::all(); 
+        
+        return Inertia::render('Communities/Index',compact('communities'));
     }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -38,9 +41,8 @@ class CommunityController extends Controller
      */
     public function store(CommunityStoreRequest $request)
     {
-        Community::create($request->validated() + ['user_id' =>auth()->id()]);
-
-        return to_route(route:'communities.index');
+        Community::create($request->validated() + ['user_id' => auth()->id()]);
+        return to_route('communities.index')->with('message', 'Community created successfully.');
     }
 
     /**
@@ -60,10 +62,10 @@ class CommunityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit( Community $community)
     {
-        //
-    }
+        return Inertia::render('Community/Edit', compact('community')); 
+     }
 
     /**
      * Update the specified resource in storage.
